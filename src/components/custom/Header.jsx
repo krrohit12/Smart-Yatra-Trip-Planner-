@@ -81,7 +81,7 @@ const Header = () => {
       <Dialog open={dialog} onOpenChange={(open) => setdialog(open)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Sign In</DialogTitle>
+            <DialogTitle></DialogTitle>
           </DialogHeader>
           <DialogDescription>
             <img src="/logo.svg" alt="" />
