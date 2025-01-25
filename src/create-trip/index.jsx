@@ -73,6 +73,7 @@ const CreateTrip = () => {
     }).then((resp)=>{
       localStorage.setItem('user',JSON.stringify(resp.data))
       setdialog(false);
+      window.location.reload();
       generatetrip();
       // console.log(resp)
     })

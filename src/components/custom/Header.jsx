@@ -23,8 +23,8 @@ const Header = () => {
   const [dialog, setdialog] = useState(false)
   // const navigate=useNavigation();
   useEffect(() => {
-    console.log(user)
-  }, [])
+    
+  }, [user])
   const login = useGoogleLogin({
     onSuccess: (resp) => getuserprofile(resp),
     onError: (e) => console.log(e)
@@ -38,6 +38,7 @@ const Header = () => {
     }).then((resp) => {
       localStorage.setItem('user', JSON.stringify(resp.data))
       setdialog(false);
+      setUser(resp.data);
       window.location.reload();
       // console.log(resp)
     })
@@ -47,7 +48,7 @@ const Header = () => {
     <div className='p-3 shadow-sm flex justify-between items-center px-5'>
       <img src="/logo.svg" />
       <div>
-        {user ?
+        {user && user.picture?
           <div className='flex gap-1 items-center'>
             <a href="/create-trip">
               <Button variant="outline" className="rounded-full">+ Create trip</Button>
@@ -57,13 +58,14 @@ const Header = () => {
             </a>
             <Popover>
               <PopoverTrigger>
-                <img src={user?.picture} alt="" className='w-[35px] h-[35px] rounded-full my-1' />
+                <img src={user?.picture ||"google.jpeg"} alt="" className='w-[35px] h-[35px] rounded-full my-1' />
               </PopoverTrigger>
               <PopoverContent>
                 <h2 onClick={() => {
                   googleLogout();
                   localStorage.clear();
                   window.location.reload();
+                  setUser(null);
                 }} className='cursor-pointer'>Log Out</h2>
               </PopoverContent>
             </Popover>
