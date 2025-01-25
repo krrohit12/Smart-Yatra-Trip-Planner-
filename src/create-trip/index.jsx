@@ -163,7 +163,7 @@ const CreateTrip = () => {
         }
         </Button>
       </div>
-      <Dialog open={dialog}>
+      <Dialog open={dialog} onOpenChange={(open) => setdialog(open)}>
         <DialogContent>
           <DialogHeader>
             <DialogDescription> 
